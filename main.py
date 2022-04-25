@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 
 app.config['SECRET_KEY'] = 'nazaer'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///user.db'
 
 db = SQLAlchemy(app)
 
@@ -22,7 +22,8 @@ class User(db.Model):
   last_name = db.Column(db.String(50))
   admin = db.Column(db.Boolean)
 
-
+db.create_all()
+db.session.commit()
 
 def token_required(f):
   @wraps(f)
