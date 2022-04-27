@@ -1,0 +1,9 @@
+.container {
+    background: rgb(174, 195, 238);
+    background: radial-gradient(circle, rgba(174, 195, 238, 1) 0%, rgba(148, 187, 233, 1) 100%);
+    height: 100vh;
+
+}
+* {
+    font-family: 'Montserrat', sans-serif;
+}

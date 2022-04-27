@@ -1,0 +1,31 @@
+header {
+    font-size: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-bottom: black solid 2px;
+    align-items: center;
+}
+
+
+
+.layout_image {
+    width: 10%;
+}
+
+.layout_image img {
+    width: 100%;
+}
+
+.layout_link {
+    text-decoration: none;
+    margin: 10% auto;
+    color: black;
+}
+
+.layout_button {
+    margin: 0 auto;
+    background-color: white;
+    border: none;
+}
+

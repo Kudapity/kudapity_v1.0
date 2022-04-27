@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+}
+
+.registration_container {
+    display: flex;
+    flex-direction: column;
+}
+
+.form {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    padding: 20px;
+}
+
+p {
+    font-size: 13px;
+    margin: 5px 0;
+    color: #490202;
+    font-weight: bold;
+}
+
+.item_span_registration {
+    margin: 10% auto 0 auto;
+    font-size: 1.5em;
+}
