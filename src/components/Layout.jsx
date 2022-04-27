@@ -15,7 +15,7 @@ const Layout = () => {
 
                 <div>
                     <Link to={'/logIn'} className={'layout_link login'}>
-                        Увійти
+                        Увійти |
                     </Link>
                     <Link to='/signUp' className={'layout_link signup'}>
                         Зареєстуватись
