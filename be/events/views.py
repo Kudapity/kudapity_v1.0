@@ -4,10 +4,15 @@ from events.models import Event
 from events.serializer import EventDetailSerializer, EventListSerializer
 
 
-class CreateEvent(generics.CreateAPIView):
+class CreateEventView(generics.CreateAPIView):
     serializer_class = EventDetailSerializer
 
 
-class EventsList(generics.ListAPIView):
+class EventsListView(generics.ListAPIView):
+    serializer_class = EventListSerializer
+    queryset = Event.get_all()
+
+
+class EventDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = EventListSerializer
     queryset = Event.get_all()

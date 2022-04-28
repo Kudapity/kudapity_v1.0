@@ -20,12 +20,8 @@ class Event(models.Model):
         pass
 
     def __repr__(self):
-        pass
+        return f'{self.__class__.__name__}(id={self.id})'
 
     @staticmethod
     def get_all():
         return Event.objects.all()
-
-    @staticmethod
-    def get_by_id(id):
-        return Event.objects.get(id=id)
