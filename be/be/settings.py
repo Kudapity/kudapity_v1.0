@@ -29,7 +29,7 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-# AUTH_USER_MODEL = ...
+AUTH_USER_MODEL = 'authentication.User'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -127,3 +127,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+'''
+    Superuser:
+email: danylo3002@gmail.com
+first_name: Danylo
+last_name: Sheremeta
+password: danylo123
+'''
