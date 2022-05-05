@@ -3,6 +3,7 @@ from django.urls import path, include, re_path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/user/', include('authentication.urls')),
-    path('api/v1/', include('events.urls')),
+    path('events/', include('events.urls')),
+    path('auth/', include('djoser.urls')),
+    re_path(r'^auth/', include('djoser.urls.authtoken')),
 ]

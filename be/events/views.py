@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from rest_framework import generics
 from events.models import Event
 from events.serializer import EventDetailSerializer, EventListSerializer
