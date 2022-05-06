@@ -39,11 +39,11 @@ const Login = () => {
         <div className={'registration_container'}>
             <span className={'item_span_registration'}>Увійдіть</span>
             <form className={'form'} onSubmit={handleSubmit(onSubmit)}>
-                <input type="text" placeholder={'First name'} {...register('login')}/>
+                <input type="text" placeholder={'First name'} {...register('login')} autoComplete='off'/>
                 <p>{errors.name?.message}</p>
-                <input type="password" placeholder={'Password'}{...register('password')}/>
+                <input type="password" placeholder={'Password'}{...register('password')} autoComplete='off'/>
                 <p>{errors.password?.message}</p>
-                <input type="submit" className={'layout_button'} value={'Підтвердити'}/>
+                <input type="submit" className={'layout_button'} value={'Підтвердити'} />
             </form>
         </div>
     );

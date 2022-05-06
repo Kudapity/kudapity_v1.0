@@ -1,0 +1,9 @@
+.item_event {
+    margin-top: 5px;
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: row;
+    width: 31%;
+    aspect-ratio: 1/1;
+    border: #3f6c6c 2px solid;
+}

@@ -30,10 +30,18 @@ const Registration = () => {
         mode: "onBlur"
     });
     const onSubmit = (data, e) => {
-        axios.post('https://jsonplaceholder.typicode.com/users', JSON.stringify(data))
+        console.log(data)
+        axios.post('https://gorest.co.in/public/v2/users', data, {
+            headers:
+                {
+                }
+        })
             .then(data => {
                 alert(JSON.stringify(data.data));
                 e.target.reset()
+            })
+            .catch(err => {
+                console.log(err)
             })
     }
 
@@ -42,15 +50,15 @@ const Registration = () => {
         <div className={'registration_container'}>
             <span className={'item_span_registration'}>Зареєструйтесь</span>
             <form className={'form'} onSubmit={handleSubmit(onSubmit)}>
-                <input type="text" placeholder={'First name'} {...register('name', {required: true, minLength: 2})}/>
+                <input type="text" placeholder={'First name'} {...register('name')} autoComplete='off'/>
                 <p>{errors.name?.message}</p>
-                <input type="text" placeholder={'Second name'} {...register('surname')}/>
+                <input type="text" placeholder={'Second name'} {...register('surname')} autoComplete='off'/>
                 <p>{errors.surname?.message}</p>
-                <input type="text" placeholder={'Email'} {...register('email')}/>
+                <input type="text" placeholder={'Email'} {...register('email')} autoComplete='off'/>
                 <p>{errors.email?.message}</p>
-                <input type="password" placeholder={'Password'}{...register('password')}/>
+                <input type="password" placeholder={'Password'}{...register('password')} autoComplete='off'/>
                 <p>{errors.password?.message}</p>
-                <input type="submit" className={'layout_button'} value={'Підтвердити'} />
+                <input type="submit" className={'layout_button'} value={'Підтвердити'}/>
             </form>
         </div>
     );

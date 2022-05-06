@@ -1,0 +1,20 @@
+.main_container {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.item_sorting_block {
+    position: fixed;
+}
+
+.item_all_events {
+    gap: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 80%;
+    margin-left: 20%;
+    overflow-y: scroll;
+    height: 90vh;
+}
