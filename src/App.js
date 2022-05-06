@@ -4,9 +4,10 @@ import {
     Routes,
     Route,
 } from "react-router-dom";
-import Home from "./components/MainPage/HomePage/index.jsx";
 import Layout from "./components/Layout";
 import Login from "./components/MainPage/Login";
+import Home from "./components/MainPage/Home";
+
 function App() {
   return (
       <BrowserRouter>

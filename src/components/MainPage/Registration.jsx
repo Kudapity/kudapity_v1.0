@@ -7,7 +7,7 @@ import axios from "axios";
 
 
 const schema = yup.object({
-    name: yup.string().max(16)
+    first_name: yup.string().max(16)
         .test('isNumber', 'Name should not contain numbers', (element) => {
             for (const elementElement of element) {
                 if (!isNaN(elementElement)) {
@@ -17,10 +17,9 @@ const schema = yup.object({
             return true
         })
         .required(),
+    last_name: yup.string().max(15).required(),
     email: yup.string().email().required(),
-    password: yup.string().max(16).required(),
-    surname: yup.string().max(15).required()
-
+    password: yup.string().max(16).required()
 }).required()
 
 
@@ -31,13 +30,11 @@ const Registration = () => {
     });
     const onSubmit = (data, e) => {
         console.log(data)
-        axios.post('https://gorest.co.in/public/v2/users', data, {
-            headers:
-                {
-                }
+        axios.post('http://127.0.0.1:8000/auth/users/', data,{
+        headers:{'Content-Type': 'application/json'}
         })
             .then(data => {
-                alert(JSON.stringify(data.data));
+                alert(JSON.stringify(data));
                 e.target.reset()
             })
             .catch(err => {
@@ -50,9 +47,9 @@ const Registration = () => {
         <div className={'registration_container'}>
             <span className={'item_span_registration'}>Зареєструйтесь</span>
             <form className={'form'} onSubmit={handleSubmit(onSubmit)}>
-                <input type="text" placeholder={'First name'} {...register('name')} autoComplete='off'/>
+                <input type="text" placeholder={'First name'} {...register('first_name')} autoComplete='off'/>
                 <p>{errors.name?.message}</p>
-                <input type="text" placeholder={'Second name'} {...register('surname')} autoComplete='off'/>
+                <input type="text" placeholder={'Second name'} {...register('last_name')} autoComplete='off'/>
                 <p>{errors.surname?.message}</p>
                 <input type="text" placeholder={'Email'} {...register('email')} autoComplete='off'/>
                 <p>{errors.email?.message}</p>

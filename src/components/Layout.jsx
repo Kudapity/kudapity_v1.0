@@ -12,7 +12,6 @@ const Layout = () => {
                         <img src={require('../img/logo_transparent.png')} alt='photo isn`t exist'/>
                     </Link>
                 </div>
-
                 <div>
                     <Link to={'/logIn'} className={'layout_link login'}>
                         Увійти |
