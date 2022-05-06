@@ -1,0 +1,19 @@
+.home_container{
+    display: flex;
+    width: 1000px;
+    margin: 0 auto;
+    background-color: white;
+}
+
+.side_bar{
+    width: 250px;
+}
+ 
+.main{
+    width: 750px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 25px;
+}
+ 

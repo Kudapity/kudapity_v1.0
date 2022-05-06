@@ -4,7 +4,7 @@ import {
     Routes,
     Route,
 } from "react-router-dom";
-import Home from "./components/MainPage/Home";
+import Home from "./components/MainPage/HomePage/index.jsx";
 import Layout from "./components/Layout";
 import Login from "./components/MainPage/Login";
 function App() {
