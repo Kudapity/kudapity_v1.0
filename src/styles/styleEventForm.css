@@ -1,0 +1,28 @@
+.event_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px auto;
+    width: 50%;
+}
+
+.event-form_photo {
+    display: none;
+}
+
+.event-form_photo_label {
+    opacity: 0.6;
+    width: 100%;
+    height: auto;
+    padding-top: 150px;
+    background: url("../img/background_photo.png") no-repeat;
+    background-size: cover;
+    border: transparent 2px solid;
+}
+
+.event-form_description {
+    width: 99.5%;
+    padding-bottom: 30px;
+    border: black 2px solid;
+}
+

@@ -1,25 +1,29 @@
-import Registration from "./components/MainPage/Registration";
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-} from "react-router-dom";
-import Layout from "./components/Layout";
-import Login from "./components/MainPage/Login";
-import Home from "./components/MainPage/Home";
+import Registration from './components/authorization/Registration';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Layout from './components/layouts/Layout';
+import Login from './components/authorization/Login';
+import Home from './components/mainpage/Home';
+import PrivateLayout from './components/layouts/PrivateLayout';
+import { useState } from 'react';
+import EventForm from './components/event/EventForm';
 
 function App() {
-  return (
-      <BrowserRouter>
-          <Routes>
-              <Route path={'/'} element={<Layout/>}>
-                  <Route index  element={<Home/>}/>
-                  <Route  path={'/signup'} element={<Registration/>}/>
-                  <Route  path={'/login'} element={<Login/>}/>
-              </Route>
-          </Routes>
-      </BrowserRouter>
-  );
+	let [token, setToken] = useState(window.localStorage.getItem('token'));
+	return (
+		<BrowserRouter>
+			<Routes>
+				<Route
+					path={'/'}
+					element={token ? <PrivateLayout setToken={setToken} /> : <Layout />}
+				>
+					<Route index element={<Home />} />
+					<Route path={'/addevent'} element={<EventForm />} />
+					<Route path={'/signup'} element={<Registration />} />
+					<Route path={'/login'} element={<Login setToken={setToken} />} />
+				</Route>
+			</Routes>
+		</BrowserRouter>
+	);
 }
 
 export default App;

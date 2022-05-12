@@ -22,8 +22,14 @@ header {
 }
 
 .layout_button {
+    padding: 5px;
     margin: 0 auto;
-    background-color: white;
+    background-color: black;
+    color: white;
     border: none;
+    border-radius: 10px;
 }
-
+.layout_button:hover {
+    background-color: white;
+    color: black;
+}
