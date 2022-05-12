@@ -23,7 +23,7 @@ class Event(models.Model):
     describe = models.TextField(max_length=500)
     type_of_event = models.IntegerField(choices=TYPE_OF_EVENT_CHOICE, default=0)
     img = models.ImageField(null=True, blank=True)
-    # owner = models.ForeignKey(User, verbose_name='User', on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     event_date = models.DateTimeField()
     city = models.ForeignKey(City, verbose_name='City', on_delete=models.CASCADE)
     address = models.CharField(max_length=60)
