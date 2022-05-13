@@ -34,7 +34,7 @@ class Event(models.Model):
                               validators=[validate_email])
 
     def __str__(self):
-        pass
+        return self.title
 
     def __repr__(self):
         return f'{self.__class__.__name__}(id={self.id})'
@@ -79,5 +79,14 @@ class Event(models.Model):
         month_end_date = f'{date[:4]}-{int(date[5:7])+1}-1'
         event_list = Event.objects.all().filter(
             event_date__range=[date, month_end_date],
+        )
+        return event_list.order_by('event_date')
+
+    @staticmethod
+    def get_by_date_events(date):
+        event_list = Event.objects.all().filter(
+            event_date__year=f'{date[6:]}',
+            event_date__month=f'{date[3:4]}',
+            event_date__day=f'{int(date[:1]) + 1}',
         )
         return event_list.order_by('event_date')
