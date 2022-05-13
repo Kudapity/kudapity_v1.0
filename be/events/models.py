@@ -1,5 +1,7 @@
 from django.db import models
 from django.core.validators import validate_email
+from datetime import datetime, timedelta
+import calendar
 
 from authentication.models import User
 from city.models import City
@@ -39,4 +41,43 @@ class Event(models.Model):
 
     @staticmethod
     def get_all():
-        return Event.objects.all()
+        event_list = Event.objects.all()
+        return event_list.order_by('event_date')
+
+    @staticmethod
+    def get_today_events():
+        date = str(datetime.today().date()).split('-')
+        event_list = Event.objects.all().filter(
+            event_date__year=f'{date[0]}',
+            event_date__month=f'{date[1]}',
+            event_date__day=f'{date[2]}',
+        )
+        return event_list.order_by('event_date')
+
+    @staticmethod
+    def get_tomorrow_events():
+        date = str(datetime.today().date()).split('-')
+        event_list = Event.objects.all().filter(
+            event_date__year=f'{date[0]}',
+            event_date__month=f'{date[1]}',
+            event_date__day=f'{int(date[2]) + 1}',
+        )
+        return event_list.order_by('event_date')
+
+    @staticmethod
+    def get_this_week_events():
+        date = str(datetime.today().date())
+        next_week = (datetime.now() + timedelta(days=7)).date()
+        event_list = Event.objects.all().filter(
+            event_date__range=[date, next_week],
+        )
+        return event_list.order_by('event_date')
+
+    @staticmethod
+    def get_this_month_events():
+        date = str(datetime.today().date())
+        month_end_date = f'{date[:4]}-{int(date[5:7])+1}-1'
+        event_list = Event.objects.all().filter(
+            event_date__range=[date, month_end_date],
+        )
+        return event_list.order_by('event_date')
