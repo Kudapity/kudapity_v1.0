@@ -7,3 +7,4 @@ sqlparse==0.4.2
 djangorestframework==3.13.1
 Pillow==9.1.0
 djoser==2.1.0
+django-cors-headers==3.12.0
