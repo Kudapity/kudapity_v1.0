@@ -46,6 +46,30 @@ class ByDateEventsListView(generics.ListAPIView):
         return queryset
 
 
+class ByCityEventsListView(generics.ListAPIView):
+    serializer_class = EventListSerializer
+
+    def get_queryset(self):
+        city = self.kwargs['city']
+        event_list = Event.objects.all().filter(city__name=city)
+        queryset = event_list.order_by('event_date')
+        return queryset
+
+
+class ByTypeEventsListView(generics.ListAPIView):
+    serializer_class = EventListSerializer
+
+    def get_queryset(self):
+        type = self.kwargs['type']
+        TYPE_OF_EVENT_CHOICE = [
+            'Entertainment', 'Spectacle', 'Exhibition', 'Concert', 'Meeting',
+            'Courses', 'Entertainment for children', 'Showing movies', 'Opening',
+        ]
+        event_list = Event.objects.all().filter(type_of_event=TYPE_OF_EVENT_CHOICE.index(type))
+        queryset = event_list.order_by('event_date')
+        return queryset
+
+
 class EventDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = EventListSerializer
     queryset = Event.get_all()
