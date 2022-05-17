@@ -8,22 +8,46 @@ header {
 
 .layout_image {
     width: 10%;
+    padding: 0 0 0 160px;
 }
 
 .layout_image img {
     width: 100%;
 }
 
-.layout_link {
+.layout_link1,
+.layout_link2{
     font-size: 1.5rem;
     text-decoration: none;
     margin: 10% auto;
     color: black;
+    
 }
+.layout_link2{
+    padding: 0 165px 0 0 ;
+}
+
 
 .layout_button {
     margin: 0 auto;
     background-color: white;
     border: none;
 }
+
+
+
+
+
+.view_all_event,
+.add_event{
+    font-size: 1.5rem;
+    text-decoration: none;
+    margin: 10% auto;
+    color: black;
+}
+.add_event{
+    padding: 0 65px 0 50px ;
+}
+
+
 

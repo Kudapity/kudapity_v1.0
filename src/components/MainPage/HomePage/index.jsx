@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Menu  from "./Menu/index";
 import Event from './Event';
 import "./style.css";
@@ -35,6 +35,8 @@ const Data = [
         ]
     },
 ]
+
+const Data1 = [{content: []}]
 
 const EventsInfo = [
     {
@@ -79,14 +81,25 @@ const Home = () => {
     const ListOfEvents = EventsInfo.map((item) => 
         <Event title={item.title} src={item.src}/>
     );
+    const [show1, setShow1] = useState(false)
+    const [show2, setShow2] = useState(false)
+    const [show3, setShow3] = useState(false)
     return (
         <div className='home_container'>
-            <div className='side_bar'>
-                <Menu title={Data[0].title} content={Data[0].content} />
-                <Menu title={Data[1].title} content={Data[1].content} />
-                <Menu title={Data[2].title} content={Data[2].content} />
-            </div>  
-
+            <section className='side_bar'>
+            <h4 onClick={() => setShow1(!show1)} className='side_bar1'>
+                <Menu title={Data[0].title} content={Data1[0].content}/>
+            </h4>
+                {show1 && <Menu content={Data[0].content}/>}   
+            <h4 onClick={() => setShow2(!show2)} className='side_bar2'>
+                <Menu title={Data[1].title} content={Data1[0].content}/>
+            </h4>
+                {show2 && <Menu content={Data[1].content}/>}
+            <h4 onClick={() => setShow3(!show3)} className='side_bar3'>
+                <Menu title={Data[2].title} content={Data1[0].content}/>
+            </h4>
+                {show3 && <Menu content={Data[2].content}/>}
+            </section>
             <div className='main'>
                 {ListOfEvents}
             </div>

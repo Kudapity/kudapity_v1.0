@@ -14,11 +14,17 @@ const Layout = () => {
                 </div>
 
                 <div>
-                    <Link to={'/logIn'} className={'layout_link login'}>
-                        Увійти |
+                    <Link to='/' className='view_all_event'>
+                        VIEW ALL EVENTS
                     </Link>
-                    <Link to='/signUp' className={'layout_link signup'}>
-                        Зареєстуватись
+                    <Link to='/' className='add_event'>
+                        ADD EVENT
+                    </Link>
+                    <Link to={'/logIn'} className={'layout_link1 login'}>
+                        LOG IN |
+                    </Link>
+                    <Link to='/signUp' className={'layout_link2 signup'}>
+                        SING UP
                     </Link>
                 </div>
 

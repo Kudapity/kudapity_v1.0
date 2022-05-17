@@ -1,13 +1,16 @@
 .menu{
-    border-right: 1px solid black;
-    border-bottom:1px solid black ;
-    padding: 35px;
+    border-bottom: 2px solid black ;
+    padding-left: 0px;
     background-color: white;
-
 }
 
 .menu h3{
     margin: 0 0 20px 0;
+    text-align: center;
+}
+.menu li{
+    margin: 0 40px;
+    
 }
 
 .link{
