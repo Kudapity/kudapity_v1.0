@@ -4,7 +4,7 @@ import '../../styles/styleRegistration.css';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const schema = yup
 	.object({
@@ -40,18 +40,21 @@ const Login = ({ setToken }) => {
 
 	return (
 		<div className={'registration_container'}>
-			<span className={'item_span_registration'}>Увійдіть</span>
+			<span className={'item_span_registration'}>Login</span>
+			<p className={'item_registration_span'}>
+				Haven't account yet? <Link to={'/signup'}>Create</Link>
+			</p>
 			<form className={'form'} onSubmit={handleSubmit(onSubmit)}>
 				<input
 					type='email'
-					placeholder={'Email'}
+					className={'item_input'}
 					{...register('email')}
 					autoComplete='off'
 				/>
 				<p>{errors.name?.message}</p>
 				<input
 					type='password'
-					placeholder={'Password'}
+					className={'item_input'}
 					{...register('password')}
 					autoComplete='off'
 				/>

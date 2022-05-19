@@ -30,9 +30,35 @@ p {
     margin: 5px 0;
     color: #ff0000;
     font-weight: bold;
+    word-break: break-all;
 }
 
 .item_span_registration {
     margin: 10% auto 0 auto;
     font-size: 1.5em;
+    font-weight: bold;
+}
+
+.label {
+    color: black !important;
+}
+
+.item_input {
+    padding: 10px 4px;
+}
+
+.item_registration_span {
+    font-size: 0.9rem;
+    color: black !important;
+    margin: 5px auto;
+}
+
+.form-block__row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+    align-items: baseline;
+    gap: 5px;
+    margin-bottom: 10px;
 }

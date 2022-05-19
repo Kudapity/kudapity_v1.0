@@ -38,7 +38,10 @@ const Registration = () => {
 		console.log(data);
 		axios
 			.post('http://127.0.0.1:8000/auth/users/', data, {
-				headers: { 'Content-Type': 'application/json' },
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `${window.localStorage.getItem(`token`)}`,
+				},
 			})
 			.then((data) => {
 				alert(JSON.stringify(data));
@@ -51,34 +54,46 @@ const Registration = () => {
 
 	return (
 		<div className={'registration_container'}>
-			<span className={'item_span_registration'}>Зареєструйтесь</span>
+			<span className={'item_span_registration'}>Create new account</span>
 			<form className={'form'} onSubmit={handleSubmit(onSubmit)}>
+				<label htmlFor='first_name'>
+					<p className={'label'}>FIRST NAME</p>
+				</label>
 				<input
 					type='text'
-					placeholder={'First name'}
 					{...register('first_name')}
 					autoComplete='off'
+					className={'item_input'}
 				/>
 				<p>{errors.name?.message}</p>
+				<label htmlFor='last_name'>
+					<p className={'label'}>LAST NAME</p>
+				</label>
 				<input
 					type='text'
-					placeholder={'Second name'}
 					{...register('last_name')}
 					autoComplete='off'
+					className={'item_input'}
 				/>
 				<p>{errors.surname?.message}</p>
+				<label htmlFor='email'>
+					<p className={'label'}>EMAIL</p>
+				</label>
 				<input
 					type='text'
-					placeholder={'Email'}
 					{...register('email')}
 					autoComplete='off'
+					className={'item_input'}
 				/>
 				<p>{errors.email?.message}</p>
+				<label htmlFor='password'>
+					<p className={'label'}>PASSWORD</p>
+				</label>
 				<input
 					type='password'
-					placeholder={'Password'}
 					{...register('password')}
 					autoComplete='off'
+					className={'item_input'}
 				/>
 				<p>{errors.password?.message}</p>
 				<input

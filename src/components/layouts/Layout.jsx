@@ -17,11 +17,7 @@ const Layout = () => {
 				</div>
 				<div>
 					<Link to={'/login'} className={'layout_link login'}>
-						Увійти
-					</Link>
-					|
-					<Link to='/signup' className={'layout_link signup'}>
-						Зареєстуватись
+						Login
 					</Link>
 				</div>
 			</header>
