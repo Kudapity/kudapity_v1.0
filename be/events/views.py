@@ -1,39 +1,48 @@
 from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
+
 from events.models import Event
 from events.serializer import EventDetailSerializer, EventListSerializer
 
 
 class CreateEventView(generics.CreateAPIView):
     serializer_class = EventDetailSerializer
+    permission_classes = [IsAuthenticated]
 
 
 class EventsListView(generics.ListAPIView):
     serializer_class = EventListSerializer
     queryset = Event.get_all()
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
 
 class TodayEventsListView(generics.ListAPIView):
     serializer_class = EventListSerializer
     queryset = Event.get_today_events()
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
 
 class TomorrowEventsListView(generics.ListAPIView):
     serializer_class = EventListSerializer
     queryset = Event.get_tomorrow_events()
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
 
 class ThisWeekEventsListView(generics.ListAPIView):
     serializer_class = EventListSerializer
     queryset = Event.get_this_week_events()
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
 
 class ThisMonthEventsListView(generics.ListAPIView):
     serializer_class = EventListSerializer
     queryset = Event.get_this_month_events()
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
 
 class ByDateEventsListView(generics.ListAPIView):
     serializer_class = EventListSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
         date = self.kwargs['date'].split('-')
@@ -48,6 +57,7 @@ class ByDateEventsListView(generics.ListAPIView):
 
 class ByCityEventsListView(generics.ListAPIView):
     serializer_class = EventListSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
         city = self.kwargs['city']
@@ -58,6 +68,7 @@ class ByCityEventsListView(generics.ListAPIView):
 
 class ByTypeEventsListView(generics.ListAPIView):
     serializer_class = EventListSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
         type = self.kwargs['type']
@@ -73,3 +84,4 @@ class ByTypeEventsListView(generics.ListAPIView):
 class EventDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = EventListSerializer
     queryset = Event.get_all()
+    permission_classes = [IsAuthenticatedOrReadOnly]
