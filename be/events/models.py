@@ -4,7 +4,6 @@ from datetime import datetime, timedelta
 import calendar
 
 from authentication.models import User
-from city.models import City
 
 
 TYPE_OF_EVENT_CHOICE = [
@@ -19,6 +18,18 @@ TYPE_OF_EVENT_CHOICE = [
     (8, 'Opening'),
 ]
 
+CITY_CHOICE = [
+    (0, 'Lviv'),
+    (1, 'Kyiv'),
+    (2, 'Kharkiv'),
+    (3, 'Odessa'),
+    (4, 'Dnipro'),
+    (5, 'Ivano-Frankivsk'),
+    (6, 'Uzhgorod'),
+    (7, 'Chernihiv'),
+    (8, 'Sumy'),
+]
+
 
 class Event(models.Model):
     title = models.CharField(max_length=50, unique=True)
@@ -27,7 +38,7 @@ class Event(models.Model):
     img = models.ImageField(null=True, blank=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     event_date = models.DateTimeField()
-    city = models.ForeignKey(City, verbose_name='City', on_delete=models.CASCADE)
+    city = models.IntegerField(choices=CITY_CHOICE, default=0)
     address = models.CharField(max_length=60)
     ticket_price = models.IntegerField(default=0)
     email = models.EmailField(max_length=100, verbose_name='Contact email',

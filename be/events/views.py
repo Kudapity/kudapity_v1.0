@@ -1,4 +1,6 @@
 from rest_framework import generics
+from rest_framework import status
+from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 
 from events.models import Event
@@ -8,6 +10,21 @@ from events.serializer import EventDetailSerializer, EventListSerializer
 class CreateEventView(generics.CreateAPIView):
     serializer_class = EventDetailSerializer
     permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        return Event.objects.filter(owner=user)
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+        # serializer = EventDetailSerializer(data=request.data)
+        # serializer.save(owner=request.user)
+        # return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
 
 
 class EventsListView(generics.ListAPIView):
