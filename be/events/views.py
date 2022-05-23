@@ -11,20 +11,13 @@ class CreateEventView(generics.CreateAPIView):
     serializer_class = EventDetailSerializer
     permission_classes = [IsAuthenticated]
 
-    def get_queryset(self):
-        user = self.request.user
-        return Event.objects.filter(owner=user)
-
     def create(self, request, *args, **kwargs):
+        user = request.user
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        serializer.save()
+        serializer.save(owner=user)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
-
-        # serializer = EventDetailSerializer(data=request.data)
-        # serializer.save(owner=request.user)
-        # return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
 
 
 class EventsListView(generics.ListAPIView):
@@ -78,7 +71,7 @@ class ByCityEventsListView(generics.ListAPIView):
 
     def get_queryset(self):
         city = self.kwargs['city']
-        event_list = Event.objects.all().filter(city__name=city)
+        event_list = Event.objects.all().filter(city=city)
         queryset = event_list.order_by('event_date')
         return queryset
 

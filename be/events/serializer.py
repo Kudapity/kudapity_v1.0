@@ -12,8 +12,6 @@ class EventDetailSerializer(serializers.ModelSerializer):
 
 
 class EventListSerializer(serializers.ModelSerializer):
-    owner = serializers.ReadOnlyField(source='owner')
-
     class Meta:
         model = Event
         fields = ['title', 'img', 'type_of_event', 'describe', 'event_date', 'city', 'address',

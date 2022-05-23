@@ -1,7 +1,6 @@
 from django.db import models
 from django.core.validators import validate_email
 from datetime import datetime, timedelta
-import calendar
 
 from authentication.models import User
 
