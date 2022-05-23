@@ -34,7 +34,7 @@ class Event(models.Model):
     title = models.CharField(max_length=50, unique=True)
     describe = models.TextField(max_length=500)
     type_of_event = models.IntegerField(choices=TYPE_OF_EVENT_CHOICE, default=0)
-    img = models.ImageField(null=True, blank=True)
+    img = models.ImageField(null=True, blank=True, upload_to='events/')
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     event_date = models.DateTimeField()
     city = models.IntegerField(choices=CITY_CHOICE, default=0)
