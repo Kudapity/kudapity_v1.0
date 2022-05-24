@@ -2,7 +2,6 @@ from rest_framework import generics
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
-from rest_framework.parsers import MultiPartParser, FormParser
 
 from events.models import Event
 from events.serializer import EventDetailSerializer, EventListSerializer
@@ -11,7 +10,6 @@ from events.serializer import EventDetailSerializer, EventListSerializer
 class CreateEventView(generics.CreateAPIView):
     serializer_class = EventDetailSerializer
     permission_classes = [IsAuthenticated]
-    parser_classes = (MultiPartParser, FormParser)
 
     def create(self, request, *args, **kwargs):
         user = request.user
