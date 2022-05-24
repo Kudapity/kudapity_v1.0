@@ -6,42 +6,53 @@ from authentication.models import User
 
 
 TYPE_OF_EVENT_CHOICE = [
-    (0, 'Entertainment'),
-    (1, 'Spectacle'),
-    (2, 'Exhibition'),
-    (3, 'Concert'),
-    (4, 'Meeting'),
-    (5, 'Courses'),
-    (6, 'Entertainment for children'),
-    (7, 'Showing movies'),
-    (8, 'Opening'),
+    ('Entertainment', 'Entertainment'),
+    ('Spectacle', 'Spectacle'),
+    ('Exhibition', 'Exhibition'),
+    ('Concert', 'Concert'),
+    ('Meeting', 'Meeting'),
+    ('Courses', 'Courses'),
+    ('Entertainment for children', 'Entertainment for children'),
+    ('Showing movies', 'Showing movies'),
+    ('Opening', 'Opening'),
 ]
 
 CITY_CHOICE = [
-    (0, 'Lviv'),
-    (1, 'Kyiv'),
-    (2, 'Kharkiv'),
-    (3, 'Odessa'),
-    (4, 'Dnipro'),
-    (5, 'Ivano-Frankivsk'),
-    (6, 'Uzhgorod'),
-    (7, 'Chernihiv'),
-    (8, 'Sumy'),
+    ('Lviv', 'Lviv'),
+    ('Kyiv', 'Kyiv'),
+    ('Kharkiv', 'Kharkiv'),
+    ('Odessa', 'Odessa'),
+    ('Dnipro', 'Dnipro'),
+    ('Ivano-Frankivsk', 'Ivano-Frankivsk'),
+    ('Uzhgorod', 'Uzhgorod'),
+    ('Chernihiv', 'Chernihiv'),
+    ('Sumy', 'Sumy'),
 ]
 
 
 class Event(models.Model):
     title = models.CharField(max_length=50, unique=True)
     describe = models.TextField(max_length=500)
-    type_of_event = models.IntegerField(choices=TYPE_OF_EVENT_CHOICE, default=0)
+    type_of_event = models.CharField(
+        choices=TYPE_OF_EVENT_CHOICE,
+        default='Entertainment',
+        max_length=100,
+    )
     img = models.ImageField(null=True, blank=True, upload_to='events/')
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     event_date = models.DateTimeField()
-    city = models.IntegerField(choices=CITY_CHOICE, default=0)
+    city = models.CharField(
+        choices=CITY_CHOICE,
+        default='Lviv',
+        max_length=100,
+    )
     address = models.CharField(max_length=60)
     ticket_price = models.IntegerField(default=0)
-    email = models.EmailField(max_length=100, verbose_name='Contact email',
-                              validators=[validate_email])
+    email = models.EmailField(
+        max_length=100,
+        verbose_name='Contact email',
+        validators=[validate_email]
+    )
 
     def __str__(self):
         return self.title
