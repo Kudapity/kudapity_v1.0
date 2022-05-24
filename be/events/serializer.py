@@ -4,6 +4,7 @@ from events.models import Event
 
 class EventDetailSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.email')
+    img = serializers.ImageField(required=False)
 
     class Meta:
         model = Event
