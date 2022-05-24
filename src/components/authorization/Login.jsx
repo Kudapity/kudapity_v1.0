@@ -25,16 +25,17 @@ const Login = ({ setToken }) => {
 	});
 	const onSubmit = (data, e) => {
 		axios
-			.post('http://127.0.0.1:8000/auth/token/login', data, {
+			.post('http://127.0.0.1:8000/api/token/', data, {
 				headers: { 'Content-Type': 'application/json' },
 			})
 			.then((data) => {
-				window.localStorage.setItem('token', `${data.data.auth_token}`);
+				console.log(data);
+				window.localStorage.setItem('token', `${data.data.access}`);
 				setToken(window.localStorage.getItem('token'));
 				navigate('/');
 			})
 			.catch((err) => {
-				console.log(err.response.data);
+				console.log(err);
 			});
 	};
 

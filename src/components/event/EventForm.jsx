@@ -4,7 +4,7 @@ import '../../styles/styleEventForm.css';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { mixed } from 'yup';
-import SelectInputCity from './SelectInputCity';
+import SelectInput from './SelectInput';
 import axios from 'axios';
 
 const EventForm = () => {
@@ -12,7 +12,6 @@ const EventForm = () => {
 		url: {},
 		name: '',
 	});
-	console.log(photo.url);
 	const schema = yup
 		.object({
 			photo: mixed()
@@ -52,14 +51,14 @@ const EventForm = () => {
 					return value && value[0].size <= 2000000;
 				})
 				.required('required'),
-			description: yup.string().max(120).min(2).required(),
-			date: yup
+			describe: yup.string().max(120).min(2).required(),
+			event_date: yup
 				.date()
 				.test('time', 'it should be in the future', (value) => {
 					return new Date() < value;
 				})
 				.required('its required field'),
-			price: yup
+			ticket_price: yup
 				.string()
 				.test('positive number', 'Price should be positive number', (value) => {
 					value = Number(value);
@@ -76,11 +75,18 @@ const EventForm = () => {
 	} = useForm({ mode: 'onChange', resolver: yupResolver(schema) });
 
 	const onSubmitHandler = (data) => {
+		data = {
+			...data,
+			photo: data.photo[0],
+			city: 0,
+			type_of_event: 0,
+			email: 'bbb@b.com',
+		};
 		axios
 			.post('http://127.0.0.1:8000/events/new_event/', data, {
 				headers: {
 					'Content-Type': 'application/json',
-					Authorization: `${window.localStorage.getItem(`token`)}`,
+					Authorization: `Bearer ${window.localStorage.getItem(`token`)}`,
 				},
 			})
 			.then((data) => {
@@ -114,6 +120,12 @@ const EventForm = () => {
 							className={'form_input'}
 						/>
 					</div>
+					<div>
+						<label htmlFor='type_of_event'>
+							<p className={'label'}>TYPE OF EVENT</p>
+						</label>
+						<SelectInput register={register} type={'typeOfEvent'} />
+					</div>
 				</div>
 				<label
 					className={'event-form_photo_label'}
@@ -144,7 +156,7 @@ const EventForm = () => {
 					className={'event-form_description'}
 					type='text'
 					autoComplete={'off'}
-					{...register('description')}
+					{...register('describe')}
 				/>
 				<p>{errors.description?.message}</p>
 				<div className={'form-block__row'}>
@@ -155,7 +167,7 @@ const EventForm = () => {
 						<input
 							className={'event-form_date form_input'}
 							type='datetime-local'
-							{...register('date')}
+							{...register('event_date')}
 						/>
 						<p>{errors.date?.message}</p>
 					</div>
@@ -163,7 +175,7 @@ const EventForm = () => {
 						<label htmlFor='city'>
 							<p className={'label'}>CITY</p>
 						</label>
-						<SelectInputCity register={register} />
+						<SelectInput register={register} type={'city'} />
 					</div>
 					<div>
 						<label htmlFor='price'>
@@ -171,7 +183,7 @@ const EventForm = () => {
 						</label>
 						<input
 							type='number'
-							{...register('price')}
+							{...register('ticket_price')}
 							className={'form_input'}
 						/>
 						<p>{errors.price?.message}</p>
