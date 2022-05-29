@@ -38,7 +38,7 @@ class Event(models.Model):
         default='Entertainment',
         max_length=100,
     )
-    img = models.ImageField(null=True, blank=True, upload_to='events/')
+    img = models.TextField(max_length=100, blank=True, default='')
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     event_date = models.DateTimeField()
     city = models.CharField(
