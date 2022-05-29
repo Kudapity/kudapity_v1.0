@@ -1,9 +1,50 @@
-.item_event {
+.item-event {
     margin-top: 5px;
     font-size: 0.9rem;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 31%;
     aspect-ratio: 1/1;
-    border: #3f6c6c 2px solid;
+    border: black 2px solid;
+}
+
+.item-event_img {
+    height: 50%;
+}
+
+.item-event_img img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.item-event_describe {
+    font-size: 1.1rem;
+}
+
+.item-event_date {
+    padding-right: 5px;
+}
+
+.item-event p {
+    color: black !important;
+}
+
+.item-event_header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    align-items: center;
+}
+
+.bottom{
+    margin: auto 0 0 0;
+}
+
+@media (max-width: 680px) {
+    .item-event {
+        width: 60%;
+        margin: 10px auto 30px auto;
+    }
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { set, useForm } from 'react-hook-form';
 import '../../styles/styleRegistration.css';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -6,21 +6,22 @@ import * as yup from 'yup';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 
-const schema = yup
-	.object({
-		email: yup.string().required(),
-		password: yup.string().max(16).required(),
-	})
-	.required();
+// const schema = yup
+// 	.object({
+// 		email: yup.string().required(),
+// 		password: yup.string().max(16).required(),
+// 	})
+// 	.required();
 
 const Login = ({ setToken }) => {
+	const [isError, setIsError] = useState(false);
+	const [ErrorData, setErrorData] = useState('');
 	const navigate = useNavigate();
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 	} = useForm({
-		resolver: yupResolver(schema),
 		mode: 'onBlur',
 	});
 	const onSubmit = (data, e) => {
@@ -35,7 +36,8 @@ const Login = ({ setToken }) => {
 				navigate('/');
 			})
 			.catch((err) => {
-				console.log(err);
+				setIsError(true);
+				setErrorData(err.response.data.detail);
 			});
 	};
 
@@ -46,13 +48,22 @@ const Login = ({ setToken }) => {
 				Haven't account yet? <Link to={'/signup'}>Create</Link>
 			</p>
 			<form className={'form'} onSubmit={handleSubmit(onSubmit)}>
+				<label htmlFor='email'>
+					<p className={'label'}>EMAIL</p>
+				</label>
 				<input
 					type='email'
 					className={'item_input'}
 					{...register('email')}
 					autoComplete='off'
+					onChange={() => {
+						setIsError(false);
+					}}
 				/>
 				<p>{errors.name?.message}</p>
+				<label htmlFor='password'>
+					<p className={'label'}>PASSWORD</p>
+				</label>
 				<input
 					type='password'
 					className={'item_input'}
@@ -60,10 +71,11 @@ const Login = ({ setToken }) => {
 					autoComplete='off'
 				/>
 				<p>{errors.password?.message}</p>
+				<p>{isError && ErrorData}</p>
 				<input
 					type='submit'
 					className={'registration-container_button'}
-					value={'Підтвердити'}
+					value={'SUBMIT'}
 				/>
 			</form>
 		</div>

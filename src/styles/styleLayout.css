@@ -29,7 +29,30 @@ header {
     border: none;
     border-radius: 10px;
 }
+
 .layout_button:hover {
     background-color: white;
     color: black;
+}
+
+.layout-profile {
+    width: 10%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.layout-dropdown {
+    display: none;
+}
+
+.layout-profile_icon {
+    height: 60px;
+}
+
+.layout-dropdown_on {
+    display: block;
+    padding: 0;
+    list-style: none;
+    margin: 0;
 }

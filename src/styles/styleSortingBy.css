@@ -1,0 +1,35 @@
+.item-sorting_block {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 20%;
+    gap: 50px;
+}
+
+
+select {
+    width: 75%;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+    padding: 5px;
+    border: 2px solid black;
+    border-right: transparent;
+    border-left: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.item-sorting_option {
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.item-sorting-title {
+    font-size: 1em;
+    color: black;
+    font-weight: bold;
+    margin-top: 30px;
+}

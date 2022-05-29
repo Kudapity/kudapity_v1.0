@@ -6,6 +6,7 @@ import * as yup from 'yup';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { mixed } from 'yup';
+import Photo from './Photo';
 
 const Registration = () => {
 	const schema = yup
@@ -65,6 +66,14 @@ const Registration = () => {
 		})
 		.required();
 
+	// function getBase64(file) {
+	// 	let reader = new FileReader();
+	// 	reader.readAsDataURL(file);
+	// 	reader.onload = function () {
+	// 		return reader.result;
+	// 	};
+	// }
+
 	const [photo, setPhoto] = useState({
 		url: {},
 		name: '',
@@ -81,14 +90,18 @@ const Registration = () => {
 	const onSubmit = (data, e) => {
 		data = {
 			...data,
-			avatar: [data.avatar[0], data.avatar[0].name],
+			avatar: data.avatar[0],
 		};
-		console.log(data.avatar);
+		// const formData = new FormData();
+		// formData.append('email', data.email);
+		// formData.append('avatar', data.avatar, data.avatar.name);
+		// formData.append('first_name', data.first_name);
+		// formData.append('last_name', data.last_name);
+		// formData.append('password', data.password);
 		axios
 			.post('http://127.0.0.1:8000/auth/users/', data, {
 				headers: {
-					'Content-Type': 'application/json ',
-					Authorization: `${window.localStorage.getItem(`token`)}`,
+					'Content-Type': 'application/json',
 				},
 			})
 			.then((data) => {
@@ -106,21 +119,8 @@ const Registration = () => {
 		<div className={'registration_container'}>
 			<span className={'item_span_registration'}>Create new account</span>
 			<form className={'form'} onSubmit={handleSubmit(onSubmit)}>
-				<label
-					className={'event-form_photo_label'}
-					style={
-						photo
-							? {
-									backgroundImage: `url(${photo.url})`,
-									backgroundRepeat: 'no-repeat',
-									backgroundPosition: 'center',
-									backgroundSize: '100px',
-									opacity: '1',
-							  }
-							: {}
-					}
-					key={'avatar'}
-				>
+				<label key={'avatar'} className={'registration-form_label'}>
+					<Photo picked={photo.url} />
 					<input
 						className={'event-form_photo'}
 						type='file'
@@ -170,7 +170,7 @@ const Registration = () => {
 				<input
 					type='submit'
 					className={'registration-container_button'}
-					value={'Підтвердити'}
+					value={'SUBMIT'}
 				/>
 			</form>
 		</div>

@@ -2,8 +2,14 @@ import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import '../../styles/styleLayout.css';
 import '../../styles/style.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 
 const PrivateLayout = ({ setToken }) => {
+	const onClickDropdown = () => {
+		let ul = document.getElementsByClassName('layout-dropdown')[0];
+		ul.classList.toggle('layout-dropdown_on');
+	};
 	const onClickClean = () => {
 		window.localStorage.removeItem('token');
 		setToken(window.localStorage.getItem('token'));
@@ -24,10 +30,22 @@ const PrivateLayout = ({ setToken }) => {
 						Поділитись подією
 					</Link>
 				</div>
-				<div>
-					<button onClick={onClickClean} className={'layout_button'}>
-						Log Out
-					</button>
+				<div className={'layout-profile'}>
+					<FontAwesomeIcon
+						icon={faCircleUser}
+						className={'layout-profile_icon'}
+						onClick={onClickDropdown}
+					/>
+					<ul className={'layout-dropdown'}>
+						<li>
+							<p className={'label'}>my events</p>
+						</li>
+						<li>
+							<p className={'label '} onClick={onClickClean}>
+								log out
+							</p>
+						</li>
+					</ul>
 				</div>
 			</header>
 			<Outlet />

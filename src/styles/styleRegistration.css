@@ -62,3 +62,21 @@ p {
     gap: 5px;
     margin-bottom: 10px;
 }
+
+.registration-form_label {
+    margin: 0 auto;
+}
+
+.registration-form_photo {
+    height: 100px;
+    width: 100px;
+    border-radius: 40%;
+}
+
+.registration-form_photo img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: black 1px solid;
+}
