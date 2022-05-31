@@ -50,9 +50,9 @@ class ByDateEventsListView(generics.ListAPIView):
     def get_queryset(self):
         date = self.kwargs['date'].split('-')
         event_list = Event.objects.all().filter(
-            event_date__year=date[2],
+            event_date__year=date[0],
             event_date__month=f'{date[1]}',
-            event_date__day=f'{date[0]}',
+            event_date__day=f'{date[2]}',
         )
         queryset = event_list.order_by('event_date')
         return queryset
@@ -75,11 +75,7 @@ class ByTypeEventsListView(generics.ListAPIView):
 
     def get_queryset(self):
         type = self.kwargs['type']
-        TYPE_OF_EVENT_CHOICE = [
-            'Entertainment', 'Spectacle', 'Exhibition', 'Concert', 'Meeting',
-            'Courses', 'Entertainment for children', 'Showing movies', 'Opening',
-        ]
-        event_list = Event.objects.all().filter(type_of_event=TYPE_OF_EVENT_CHOICE.index(type))
+        event_list = Event.objects.all().filter(type_of_event=type)
         queryset = event_list.order_by('event_date')
         return queryset
 
