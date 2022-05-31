@@ -18,15 +18,31 @@ TYPE_OF_EVENT_CHOICE = [
 ]
 
 CITY_CHOICE = [
-    ('Lviv', 'Lviv'),
-    ('Kyiv', 'Kyiv'),
-    ('Kharkiv', 'Kharkiv'),
-    ('Odessa', 'Odessa'),
-    ('Dnipro', 'Dnipro'),
-    ('Ivano-Frankivsk', 'Ivano-Frankivsk'),
-    ('Uzhgorod', 'Uzhgorod'),
+    ('Cherkasy', 'Cherkasy'),
     ('Chernihiv', 'Chernihiv'),
+    ('Chernivtsi', 'Chernivtsi'),
+    ('Dnipropetrovsk','Dnipropetrovsk',),
+    ('Donetsk','Donetsk',),
+    ('Ivano-Frankivsk', 'Ivano-Frankivsk'),
+    ('Kharkiv', 'Kharkiv'),
+    ('Kherson', 'Kherson'),
+    ('Khmelnytsk', 'Khmelnytsk'),
+    ('Kiyv', 'Kiyv'),
+    ('Luhansk', 'Luhansk'),
+    ('Lviv', 'Lviv'),
+    ('Mykolaiv', 'Mykolaiv'),
+    ('Odesa', 'Odesa'),
+    ('Poltava', 'Poltava'),
+    ('Rivne', 'Rivne'),
+    ('Sevastopol', 'Sevastopol'),
     ('Sumy', 'Sumy'),
+    ('Ternopil', 'Ternopil'),
+    ('Vinnytsia', 'Vinnytsia'),
+    ('Volyn', 'Volyn'),
+    ('Zakarpattia', 'Zakarpattia'),
+    ('Zaporizhzhia', 'Zaporizhzhia'),
+    ('Zhytomyr', 'Zhytomyr'),
+    ('Crimea', 'Crimea')
 ]
 
 
