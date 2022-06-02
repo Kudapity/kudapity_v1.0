@@ -3,6 +3,7 @@ from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnl
 
 from events.models import Event
 from events.serializer import EventDetailSerializer, EventListSerializer
+from rest_framework.generics import DestroyAPIView
 
 
 class CreateEventView(generics.CreateAPIView):
@@ -17,6 +18,17 @@ class EventsListView(generics.ListAPIView):
     serializer_class = EventListSerializer
     queryset = Event.get_all()
     permission_classes = [IsAuthenticatedOrReadOnly]
+
+
+class UserEventsView(generics.ListAPIView):
+    serializer_class = EventListSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+    def get_queryset(self):
+        user_id = self.kwargs['pk']
+        event_list = Event.objects.all().filter(owner__id=user_id)
+        queryset = event_list.order_by('event_date')
+        return queryset
 
 
 class TodayEventsListView(generics.ListAPIView):
@@ -84,3 +96,12 @@ class EventDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = EventListSerializer
     queryset = Event.get_all()
     permission_classes = [IsAuthenticatedOrReadOnly]
+
+
+class DeleteEventView(generics.DestroyAPIView):
+    serializer_class = EventListSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        queryset = Event.objects.filter(owner=self.request.user, id=self.kwargs['pk'])
+        return queryset

@@ -15,4 +15,6 @@ urlpatterns = [
     path('by-type/<str:type>/', ByTypeEventsListView.as_view(), name='by type events'),
     path('new_event/', CreateEventView.as_view(), name='Create new event'),
     path('event/<int:pk>/', CreateEventView.as_view(), name='GET some event'),
+    path('my_events/<int:pk>/', UserEventsView.as_view(), name='User`s events list'),
+    path('delete/<int:pk>/', DeleteEventView.as_view(), name='Delete some event'),
 ]
