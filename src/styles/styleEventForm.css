@@ -6,13 +6,28 @@
     width: 50%;
 }
 
+@media (max-width: 680px) {
+    .event_form {
+        display: block;
+    }
+
+    .form-block__row {
+        display: block;
+    }
+
+    .event-form_photo_label {
+        padding-left: 200px;
+    }
+}
+
 .event-form_photo {
     display: none;
 }
-.event-form_registration{
-    margin-top: 50px;
 
+.event-form_registration {
+    margin-top: 50px;
 }
+
 .event-form_photo_label {
     opacity: 0.6;
     width: 100%;
@@ -28,15 +43,29 @@
     padding-bottom: 30px;
     border: black 2px solid;
 }
+
 .form_input {
     border: 2px black solid;
     font-size: 0.9rem;
 }
+
 input[type='number'] {
-    -moz-appearance:textfield;
+    -moz-appearance: textfield;
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
+}
+
+.form-input_width {
+    width: 100%;
+}
+
+.event-form_posted {
+    text-align: center;
+}
+
+.event-form_posted > p {
+    color: green;
 }

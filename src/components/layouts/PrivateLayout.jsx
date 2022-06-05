@@ -27,7 +27,7 @@ const PrivateLayout = ({ setToken }) => {
 				</div>
 				<div>
 					<Link className={'layout_link'} to={'/addevent'}>
-						Поділитись подією
+						Share event
 					</Link>
 				</div>
 				<div className={'layout-profile'}>
@@ -38,12 +38,14 @@ const PrivateLayout = ({ setToken }) => {
 					/>
 					<ul className={'layout-dropdown'}>
 						<li>
-							<p className={'label'}>my events</p>
+							<Link className={'layout-link_dropdown'} to={'/userevents'}>
+								my events
+							</Link>
 						</li>
 						<li>
-							<p className={'label '} onClick={onClickClean}>
+							<button onClick={onClickClean} className={'layout_button'}>
 								log out
-							</p>
+							</button>
 						</li>
 					</ul>
 				</div>

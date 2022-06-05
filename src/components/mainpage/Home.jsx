@@ -3,6 +3,7 @@ import SortingBy from '../event/SortingBy';
 import Event from '../event/Event';
 import axios from 'axios';
 import '../../styles/styleMainPage.css';
+import EventList from '../event/EventList';
 const array_cities = [
 	'Cherkasy',
 	'Chernihiv',
@@ -41,20 +42,23 @@ const array_typesOfEvent = [
 	'Showing movies',
 	'Opening',
 ];
+const array_day = ['this-month', 'this-week', 'tomorrow', 'today'];
 const Home = () => {
 	const url = 'http://127.0.0.1:8000/events/';
 	const [filter, setFilter] = useState('');
-	console.log(filter);
 	const [arrayOfPosts, setPosts] = useState([]);
 	if (array_cities.includes(filter)) {
-		console.log(filter + ' is city');
-		setFilter('by-city/' + filter.toLowerCase());
+		setFilter('by-city/' + filter + '/');
+	}
+	if (array_day.includes(filter)) {
+		setFilter(filter + '/');
 	}
 	if (array_typesOfEvent.includes(filter)) {
-		console.log(filter + 'is type');
-		setFilter('by-type/' + filter.toLowerCase());
+		setFilter('by-type/' + filter + '/');
 	}
-
+	if (filter.length === 1) {
+		setFilter('');
+	}
 	useEffect(() => {
 		axios
 			.get(url + filter)
@@ -70,11 +74,11 @@ const Home = () => {
 			<div className={'item_sorting_block'}>
 				<SortingBy filter={{ setFilter, filter }} />
 			</div>
-			<div className={'item_all_events'}>
-				{arrayOfPosts.map((element) => {
-					return <Event postData={element} key={element.title} />;
-				})}
-			</div>
+			<EventList
+				array={arrayOfPosts}
+				button={false}
+				styleClass={'item_all_events'}
+			/>
 		</div>
 	);
 };

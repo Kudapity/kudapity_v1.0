@@ -3,7 +3,7 @@ import '../../styles/styleSortingBy.css';
 
 const SortingBy = ({ filter }) => {
 	const onChangeHandler = (value) => {
-		if (value === '' || value === filter.filter) {
+		if (value === filter.filter) {
 			return;
 		}
 		filter.setFilter(value);
@@ -28,10 +28,10 @@ const SortingBy = ({ filter }) => {
 				<option value='tomorrow'>
 					<span className={'item-sorting_option'}>tomorrow</span>
 				</option>
-				<option value='this_week'>
+				<option value='this-week'>
 					<span className={'item-sorting_option'}>this week</span>
 				</option>
-				<option value='this_month'>
+				<option value='this-month'>
 					<span className={'item-sorting_option'}>this month</span>
 				</option>
 			</select>
@@ -127,7 +127,7 @@ const SortingBy = ({ filter }) => {
 					onChangeHandler(e.target.value);
 				}}
 			>
-				<option value=''>select by type of event</option>
+				<option value=''>select by type</option>
 				<option value='Entertainment'>
 					<span className={'item-sorting_option'}>Entertainment</span>
 				</option>

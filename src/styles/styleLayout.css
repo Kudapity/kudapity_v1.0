@@ -56,3 +56,18 @@ header {
     list-style: none;
     margin: 0;
 }
+
+.layout-dropdown_logout:hover {
+    color: white;
+    background-color: black;
+}
+
+.layout-link_dropdown {
+    text-decoration: none;
+    color: black;
+    font-size: 0.9rem;
+}
+.layout-link_dropdown:hover {
+    color: white;
+    background-color: black;
+}

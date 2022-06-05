@@ -33,3 +33,8 @@ select {
     font-weight: bold;
     margin-top: 30px;
 }
+@media (max-width: 680px) {
+    .item-sorting_block {
+        width: 25%;
+    }
+}

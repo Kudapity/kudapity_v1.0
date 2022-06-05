@@ -1,19 +1,10 @@
 import React, { useState } from 'react';
-import { set, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import '../../styles/styleRegistration.css';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-
-// const schema = yup
-// 	.object({
-// 		email: yup.string().required(),
-// 		password: yup.string().max(16).required(),
-// 	})
-// 	.required();
-
-const Login = ({ setToken }) => {
+import jwt from 'jwt-decode';
+const Login = ({ setter }) => {
 	const [isError, setIsError] = useState(false);
 	const [ErrorData, setErrorData] = useState('');
 	const navigate = useNavigate();
@@ -29,10 +20,10 @@ const Login = ({ setToken }) => {
 			.post('http://127.0.0.1:8000/api/token/', data, {
 				headers: { 'Content-Type': 'application/json' },
 			})
-			.then((data) => {
-				console.log(data);
-				window.localStorage.setItem('token', `${data.data.access}`);
-				setToken(window.localStorage.getItem('token'));
+			.then((res) => {
+				// let token = jwt(res.data.access);
+				window.localStorage.setItem('token', res.data.access);
+				setter.setToken(window.localStorage.getItem('token'));
 				navigate('/');
 			})
 			.catch((err) => {

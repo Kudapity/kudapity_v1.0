@@ -5,18 +5,23 @@
 
 
 .item_all_events {
-    gap: 20px;
     display: flex;
     flex-direction: row;
+    align-content: flex-start;
+    gap: 20px;
     flex-wrap: wrap;
     width: 80%;
     margin-left: 20%;
-    overflow-y: scroll;
+    overflow-y: auto;
     height: 90vh;
 }
 
 @media (max-width: 680px) {
     .item_all_events{
         display: block;
+        width: 75%;
+    }
+    * {
+        font-size: 8px;
     }
 }

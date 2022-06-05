@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     width: 31%;
-    aspect-ratio: 1/1;
+    height: 25%;
     border: black 2px solid;
 }
 
@@ -20,10 +20,11 @@
 
 .item-event_describe {
     font-size: 1.1rem;
+    margin: auto auto;
 }
 
 .item-event_date {
-    padding-right: 5px;
+    padding: 0 8px;
 }
 
 .item-event p {
@@ -33,13 +34,63 @@
 .item-event_header {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     font-size: 1.1rem;
     align-items: center;
 }
 
-.bottom{
+.top {
+    border-bottom: 2px black solid;
+    width: 100%;
+    font-weight: bold;
+    text-align: center;
+}
+
+.bottom {
     margin: auto 0 0 0;
+    border-top: 1px black solid;
+}
+
+.item-event_column {
+    display: flex;
+    flex-direction: column;
+}
+
+.event-button {
+    width: 100%;
+    padding: 5px;
+    background-color: #ec4f4f;
+}
+
+.item-event_notification {
+    margin: 10% auto;
+}
+
+.item-event_notification > p {
+    color: black;
+    font-size: 1.7rem;
+}
+
+.user-event_list {
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+    width: 80%;
+    margin: 0 auto;
+    overflow-y: auto;
+    height: 90vh;
+}
+
+.button_success {
+    background-color: green;
+    color: black;
+    font-weight: bold;
+}
+
+.item-event_title p {
+    font-size: 1.0rem;
 }
 
 @media (max-width: 680px) {

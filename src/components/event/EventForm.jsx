@@ -3,54 +3,15 @@ import { useForm } from 'react-hook-form';
 import '../../styles/styleEventForm.css';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { mixed } from 'yup';
 import SelectInput from './SelectInput';
 import axios from 'axios';
 
 const EventForm = () => {
-	const [photo, setPhoto] = useState({
-		url: {},
-		name: '',
-	});
+	const message = 'You successfully created event';
+	const [isPosted, setIsPosted] = useState(false);
+
 	const schema = yup
 		.object({
-			photo: mixed()
-				.test('isValuatedType', 'FIle should be .png .jpeg', (element) => {
-					if (element[0] === undefined) {
-						return false;
-					}
-					const file_type = element[0].type;
-					if (
-						(element && file_type === 'image/jpeg') ||
-						file_type === 'image/png'
-					) {
-						if (!photo.url) {
-							setPhoto(() => {
-								return {
-									url: URL.createObjectURL(element[0]),
-									name: element[0].name,
-								};
-							});
-						}
-						if (photo.name !== element[0].name) {
-							setPhoto(() => {
-								return {
-									url: URL.createObjectURL(element[0]),
-									name: element[0].name,
-								};
-							});
-						}
-						return true;
-					}
-					return false;
-				})
-				.test('File is to large', 'File is bigger than 2mb', (value) => {
-					if (value[0] === undefined) {
-						return false;
-					}
-					return value && value[0].size <= 2000000;
-				})
-				.required('required'),
 			describe: yup.string().max(120).min(2).required(),
 			event_date: yup
 				.date()
@@ -74,12 +35,9 @@ const EventForm = () => {
 		formState: { errors },
 	} = useForm({ mode: 'onChange', resolver: yupResolver(schema) });
 
-	const onSubmitHandler = (data) => {
+	const onSubmitHandler = (data, e) => {
 		data = {
 			...data,
-			photo: data.photo[0],
-			city: 0,
-			type_of_event: 0,
 			email: 'bbb@b.com',
 		};
 		axios
@@ -90,7 +48,8 @@ const EventForm = () => {
 				},
 			})
 			.then((data) => {
-				console.log(data);
+				e.target.reset();
+				setIsPosted(true);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -98,7 +57,13 @@ const EventForm = () => {
 	};
 	return (
 		<div className={'event-form_registration'}>
-			<form className={'event_form'} onSubmit={handleSubmit(onSubmitHandler)}>
+			<form
+				className={'event_form'}
+				onSubmit={handleSubmit(onSubmitHandler)}
+				onFocus={() => {
+					setIsPosted(false);
+				}}
+			>
 				<div className={'form-block__row'}>
 					<div>
 						<label htmlFor='title'>
@@ -127,28 +92,6 @@ const EventForm = () => {
 						<SelectInput register={register} type={'typeOfEvent'} />
 					</div>
 				</div>
-				<label
-					className={'event-form_photo_label'}
-					style={
-						photo
-							? {
-									backgroundImage: `url(${photo.url})`,
-									backgroundRepeat: 'no-repeat',
-									backgroundPosition: 'center',
-									backgroundSize: '100px',
-									opacity: '1',
-							  }
-							: {}
-					}
-					key={'photo'}
-				>
-					<input
-						className={'event-form_photo'}
-						type='file'
-						{...register('photo')}
-					/>
-				</label>
-				<p>{errors.photo?.message}</p>
 				<label htmlFor='description'>
 					<p className={'label'}>DESCRIPTION</p>
 				</label>
@@ -189,9 +132,11 @@ const EventForm = () => {
 						<p>{errors.price?.message}</p>
 					</div>
 				</div>
-
-				<input type={'submit'} className={'layout_button'} />
+				<input type={'submit'} className={'layout_button'} value={'SUBMIT'} />
 			</form>
+			<div className={'event-form_posted'}>
+				<p>{isPosted && message}</p>
+			</div>
 		</div>
 	);
 };

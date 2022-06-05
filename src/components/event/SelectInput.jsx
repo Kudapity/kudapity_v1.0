@@ -47,7 +47,7 @@ const SelectInput = ({ register, type }) => {
 					id=''
 					defaultValue={'Lviv'}
 					{...register('city')}
-					className={'form_input'}
+					className={'form_input form-input_width'}
 				>
 					{array_cities.map((element) => {
 						return (
@@ -67,7 +67,7 @@ const SelectInput = ({ register, type }) => {
 					id=''
 					defaultValue={'Entertainment'}
 					{...register('type_of_event')}
-					className={'form_input'}
+					className={'form_input form-input_width'}
 				>
 					{array_typesOfEvent.map((element) => {
 						return (
