@@ -101,7 +101,7 @@ const EventForm = () => {
 					autoComplete={'off'}
 					{...register('describe')}
 				/>
-				<p>{errors.description?.message}</p>
+				<p>{errors.describe?.message}</p>
 				<div className={'form-block__row'}>
 					<div>
 						<label htmlFor='date'>
@@ -112,7 +112,7 @@ const EventForm = () => {
 							type='datetime-local'
 							{...register('event_date')}
 						/>
-						<p>{errors.date?.message}</p>
+						<p>{errors.event_date?.message}</p>
 					</div>
 					<div>
 						<label htmlFor='city'>
@@ -129,7 +129,7 @@ const EventForm = () => {
 							{...register('ticket_price')}
 							className={'form_input'}
 						/>
-						<p>{errors.price?.message}</p>
+						<p>{errors.ticket_price?.message}</p>
 					</div>
 				</div>
 				<input type={'submit'} className={'layout_button'} value={'SUBMIT'} />
